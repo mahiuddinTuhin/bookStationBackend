@@ -91,3 +91,9 @@ exports.filterBooksService = async (condition) => {
   const result = await Book.find(filterOptions);
   return result;
 };
+
+// delete bulk amount of books
+exports.BulkdeleteBookByIdService = async (ids) => {
+  const result = await Book.deleteMany({ _id: { $in: ids } });
+  return result;
+};

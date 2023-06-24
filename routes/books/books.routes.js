@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.route("/searchBooks").get(booksController.searchBooks);
 router.route("/filterBooks").get(booksController.filterBooks);
+router.route("/bulkDelete").delete(booksController.BulkdeleteBookById);
 
 router
   .route("/")

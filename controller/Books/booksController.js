@@ -159,3 +159,29 @@ exports.filterBooks = async (req, res) => {
     });
   }
 };
+
+// delete many books
+exports.BulkdeleteBookById = async (req, res) => {
+  const { ids } = req.body;
+
+  try {
+    const result = await booksService.BulkdeleteBookByIdService(ids);
+    // Handle case where book with given ID was not found
+    if (!result) {
+      return res.status(404).json({
+        status: "error",
+        book: "book not found",
+      });
+    }
+    res.status(200).json({
+      status: "success",
+      book: result,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: "Failed to delete book",
+      error: error.message,
+    });
+  }
+};
