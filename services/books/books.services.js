@@ -21,8 +21,12 @@ exports.deleteBookByIdService = async (id, data) => {
   return result;
 };
 
+// const book = await Book.findById(id);
+// if (!book) {
+//   throw new Error("Book not found by this id.");
+// }
 exports.getBookByIdService = async (id) => {
-  const result = await Book.find({ _id: id });
+  const result = await Book.findOne({ _id: id });
   return result;
 };
 
@@ -97,3 +101,12 @@ exports.BulkdeleteBookByIdService = async (ids) => {
   const result = await Book.deleteMany({ _id: { $in: ids } });
   return result;
 };
+
+/* 
+
+# have to add image in the schema
+# ask chatgpt to make these services more professional and controller to make more error handling
+# make some more api for books
+# discover some testing software for backend
+
+*/

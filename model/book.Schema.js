@@ -154,6 +154,20 @@ const bookSchema = mongoose.Schema(
       min: [10, "book's summary is too short."],
       trim: true,
     },
+
+    imageUrls: [
+      {
+        type: String,
+        trim: true,
+        validate: {
+          validator: function (value) {
+            const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+            return urlPattern.test(value);
+          },
+          message: "Invalid url format.",
+        },
+      },
+    ],
   },
   {
     timestamps: true,
